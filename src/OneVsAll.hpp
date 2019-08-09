@@ -7,7 +7,8 @@
 #include <utility>
 #include <vector>
 
-template <typename T> class OneVsAll {
+template <typename T>
+class OneVsAll {
   protected:
     std::shared_ptr<DatasetView> dataset;
     std::vector<std::pair<int32_t, T>> predictor;

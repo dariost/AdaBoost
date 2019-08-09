@@ -13,8 +13,7 @@ class DatasetView {
 
   public:
     DatasetView(std::shared_ptr<DatasetView> dataset_);
-    DatasetView(std::shared_ptr<DatasetView> dataset_,
-                const std::vector<size_t>& indices_);
+    DatasetView(std::shared_ptr<DatasetView> dataset_, const std::vector<size_t>& indices_);
     virtual int32_t get_label(size_t sample) const;
     virtual size_t get_n_features() const;
     virtual size_t get_n_samples() const;

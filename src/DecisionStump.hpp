@@ -10,7 +10,6 @@ class DecisionStump {
     bool left_positive;
 
   public:
-    DecisionStump(std::shared_ptr<DatasetView> dataset, int32_t label,
-                  const std::vector<double>& w);
+    DecisionStump(std::shared_ptr<DatasetView> dataset, int32_t label, const std::vector<double>& w);
     double predict(const std::vector<double>& point) const;
 };

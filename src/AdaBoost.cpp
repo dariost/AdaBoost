@@ -12,7 +12,7 @@ double AdaBoost::predict(const std::vector<double>& point) const {
     for(size_t i = 0; i < a.size(); i++) {
         result += a[i] * h[i].predict(point);
     }
-    return result;
+    return std::tanh(result);
 }
 
 size_t AdaBoost::get_epoch() { return a.size(); }

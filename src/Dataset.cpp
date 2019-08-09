@@ -35,10 +35,6 @@ size_t Dataset::get_n_features() const { return n_features; }
 
 size_t Dataset::get_n_samples() const { return n_samples; }
 
-const std::vector<int32_t>& Dataset::get_labels() const {
-    return possible_labels;
-}
+const std::vector<int32_t>& Dataset::get_labels() const { return possible_labels; }
 
-double Dataset::get_value(size_t sample, size_t feature) const {
-    return data[feature * n_samples + sample];
-}
+double Dataset::get_value(size_t sample, size_t feature) const { return data[feature * n_samples + sample]; }
