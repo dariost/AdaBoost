@@ -1,4 +1,5 @@
 #include "AdaBoost.hpp"
+#include "Bagging.hpp"
 #include "Dataset.hpp"
 #include "DatasetView.hpp"
 #include "OneVsAll.hpp"
@@ -37,10 +38,14 @@ int main() {
         dataset->add_sample(label, point);
     }
     dataset->finalize();
-    OneVsAll<AdaBoost> ova(dataset);
+    OneVsAll<AdaBoost> ova_ab(dataset);
+    OneVsAll<Bagging> ova_bg(dataset);
     for(size_t i = 0;; i++) {
-        ova.next_epoch();
-        cout << "T = " << ova.get_epoch() << " -> training error = " << setprecision(12) << error(dataset, ova) << endl;
+        ova_ab.next_epoch();
+        ova_bg.next_epoch();
+        cout << "T = " << ova_ab.get_epoch() << " -> tr. e. AdaBoost = " << setprecision(15) << error(dataset, ova_ab) << endl;
+        cout << "T = " << ova_bg.get_epoch() << " -> tr. e. Bagging  = " << setprecision(15) << error(dataset, ova_bg) << endl;
+        cout << endl;
     }
     return 0;
 }

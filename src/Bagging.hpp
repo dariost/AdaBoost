@@ -2,19 +2,17 @@
 
 #include "DatasetView.hpp"
 #include "DecisionStump.hpp"
-#include "Predictor.hpp"
-#include <memory>
+#include <random>
 
-class AdaBoost : public Predictor {
+class Bagging {
   protected:
     std::shared_ptr<DatasetView> dataset;
-    std::vector<double> w;
-    std::vector<double> a;
     std::vector<DecisionStump> h;
     int32_t label;
+    std::mt19937 r;
 
   public:
-    AdaBoost(std::shared_ptr<DatasetView> dataset_, int32_t label_, uint32_t seed);
+    Bagging(std::shared_ptr<DatasetView> dataset_, int32_t label_, uint32_t seed);
     double predict(const std::vector<double>& point) const;
     size_t get_epoch();
     void next_epoch();

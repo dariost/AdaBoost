@@ -1,7 +1,8 @@
 #include "AdaBoost.hpp"
 #include <cmath>
 
-AdaBoost::AdaBoost(std::shared_ptr<DatasetView> dataset_, int32_t label_) {
+AdaBoost::AdaBoost(std::shared_ptr<DatasetView> dataset_, int32_t label_, uint32_t seed) {
+    (void)seed;
     dataset = dataset_;
     label = label_;
     w.resize(dataset->get_n_samples(), 1.0 / double(dataset->get_n_samples()));
