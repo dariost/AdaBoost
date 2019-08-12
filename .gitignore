@@ -33,3 +33,4 @@
 *.elf
 
 *.json
+fetch/

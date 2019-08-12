@@ -1,8 +1,12 @@
+#!/usr/bin/env python3
 import json
+import sys
 import matplotlib.pyplot as plt
 
-if __name__ == "__main__"
-    d = json.loads(open("result.json", "r").read())
+
+if __name__ == "__main__":
+    assert len(sys.argv) == 2
+    d = json.loads(open(sys.argv[1], "r").read())
 
     adatrain = list()
     bagtrain = list()
