@@ -1,17 +1,20 @@
 \documentclass[11pt,a4paper]{report}
 
-\usepackage[italian]{babel}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{minted}
 \usepackage{amsfonts}
 
 \begin{document}
-\title{Titolo bello}
+\title{Beautiful title}
 \author{Luca Giuliani, Dario Ostuni}
 \date{}
 \maketitle
 
-\input introduzione.tex
+\tableofcontents
+
+\input introduction.tex
 
 \bibliographystyle{plain}
 \bibliography{local}
