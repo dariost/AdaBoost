@@ -23,16 +23,24 @@ class CrossValidation {
     CrossValidation(std::shared_ptr<DatasetView> dataset, size_t k, uint32_t seed = 42) {
         size_t n = dataset->get_n_samples();
         for(size_t i = 0; i < k; i++) {
-            std::vector<size_t> test_indices, training_indices;
+            std::vector<std::pair<size_t, size_t>> test_range, training_range;
             for(size_t j = 0; j < n; j++) {
                 if(j >= n * i / k && j < n * (i + 1) / k) {
-                    test_indices.push_back(j);
+                    if(test_range.size() > 0 && test_range.back().second == j) {
+                        test_range.back().second++;
+                    } else {
+                        test_range.emplace_back(j, j + 1);
+                    }
                 } else {
-                    training_indices.push_back(j);
+                    if(training_range.size() > 0 && training_range.back().second == j) {
+                        training_range.back().second++;
+                    } else {
+                        training_range.emplace_back(j, j + 1);
+                    }
                 }
             }
-            test_set.push_back(std::make_shared<DatasetView>(dataset, test_indices));
-            training_set.push_back(std::make_shared<DatasetView>(dataset, training_indices));
+            test_set.push_back(std::make_shared<DatasetView>(dataset, test_range));
+            training_set.push_back(std::make_shared<DatasetView>(dataset, training_range));
             predictors.emplace_back(training_set.back(), seed);
         }
     }
