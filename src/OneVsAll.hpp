@@ -14,7 +14,7 @@ class OneVsAll {
     std::vector<std::pair<int32_t, T>> predictor;
 
   public:
-    OneVsAll(std::shared_ptr<DatasetView> dataset_, uint32_t base_seed = 42) {
+    OneVsAll(std::shared_ptr<DatasetView> dataset_, uint32_t base_seed) {
         dataset = dataset_;
         for(const auto& label : dataset->get_labels()) {
             predictor.emplace_back(label, T(dataset, label, base_seed + label));
