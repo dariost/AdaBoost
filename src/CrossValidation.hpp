@@ -39,6 +39,7 @@ class CrossValidation {
 
     double test_error() {
         double total_error = 0.0;
+#pragma omp parallel for schedule(dynamic) reduction(+ : total_error)
         for(size_t i = 0; i < test_set.size(); i++) {
             total_error += error(test_set[i], predictors[i]);
         }
@@ -47,6 +48,7 @@ class CrossValidation {
 
     double training_error() {
         double total_error = 0.0;
+#pragma omp parallel for schedule(dynamic) reduction(+ : total_error)
         for(size_t i = 0; i < training_set.size(); i++) {
             total_error += error(training_set[i], predictors[i]);
         }
