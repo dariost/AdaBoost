@@ -1,0 +1,25 @@
+% !TeX spellcheck = en_US
+
+\chapter{Ada Boost}
+\section{General}
+	The AdaBoost learning meta-algorithm $f$ combines the results of a sequence of basic classifiers with a weighted sum. The function sgn($f$) is used to represent it's final output where $f$ is defined as follow:
+	\begin{align*}
+		f = \sum_{i=1}^{T}w_{i}h_{i}
+	\end{align*}
+	Where $h_{i}, \dots, h_{T}$ are the basic classifiers and $w_{i}, \dots, w{T}$ are the weights. Such weights have been chosen to minimize the AdaBoost's training error upper bound:
+	\begin{align}
+		\hat{\ell}_{S}(f) \leq \prod_{i=1}^{T}(e^{-w_{i}}(1-\epsilon_{i})+e^{w_{i}}\epsilon_{i})
+		\label{test}
+	\end{align}
+	where $\epsilon_{i}$ is the individual predictors error with respect to the probability $\mathbb{P}_{i}$. The derivative of (\ref{test}) with respect to $w$ is:
+	\begin{align*}
+		w = \frac{1}{2}\ln\frac{1-\epsilon_{i}}{\epsilon_{i}}
+	\end{align*}
+	which is defined if and only if $0 < epsilon_{i} < 1$. Otherwise, either $|h_{i}|$ has zero training error on the given dataset, hence boosting is avoidable. 
+%\begin{align}
+%	\mathbb{P} (h_{1}(x_{Z}) \neq y_{Z} \land \dots \land h_{T}(x_{Z}) \neq y_{Z}) = %\prod_{i=1}^{T}w_{i}h_{i}
+%\end{align}
+%\begin{align}
+%	\hat{\ell}(f) \leq \exp(-2\sum_{i=1}^{T}\gamma^{2}_{i})
+%\end{align}
+\section{Implementation}
