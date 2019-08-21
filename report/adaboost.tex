@@ -29,3 +29,30 @@
 %	\hat{\ell}(f) \leq \exp(-2\sum_{i=1}^{T}\gamma^{2}_{i})
 %\end{align}
 \section{Implementation}
+\begin{algorithm}[htpb]
+	\label{alg:adaboost}
+	\begin{algorithmic}[]
+		\Procedure{AdaBoost}{$S$, $BASE(\cdot,\cdot)$, $T$}
+		\State $w^{(0)} \gets (1/n,\;\dots\;,1/n)$
+		\For{$t \gets 1 \textbf{ to } T$}
+			\State $h_{t} \gets BASE(S, w^{(t)})$
+			\State $\epsilon_{t} \gets \sum_{i=1}^{n}w_{i}^{(t)}\mathbb{I}\lbrace h^{(t)}(x_{i} \neq y_{i}) \rbrace $
+			\State $\alpha^{(t)} \gets \frac{1}{2}\ln\Big(\frac{1-\epsilon_{t}}{\epsilon_{t}}\Big)$
+			\For{$i\gets1\textbf{ to } n$}
+				\If{$\mathbb{I}\lbrace h^{(t)}(x_{i} \neq y_{i}$}
+					\State $w_{i}^{(t+1)}\gets\frac{w_{i}^{(t)}}{2\epsilon{(t)}}$
+				\Else
+					\State $w_{i}^{(t+1)}\gets\frac{w_{i}^{(t)}}{2(1-\epsilon{(t)})}$
+				\EndIf
+			\EndFor
+		\EndFor
+		\Return $\sum_{t=1}^{T}\alpha^{(t)}h^{(t)}$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
