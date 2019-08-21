@@ -1,21 +1,13 @@
 % !TeX spellcheck = en_US
 
-\chapter{Ada Boost}
+\chapter{AdaBoost}
 \section{General}
-	The AdaBoost learning meta-algorithm $f$ combines the results of a sequence of basic classifiers with a weighted sum. The function sgn($f$) is used to represent it's final output where $f$ is defined as follow:
+	The AdaBoost learning meta-algorithm $f$ combines the results of a sequence of basic classifiers with a weighted sum. \\
+	Let the training set be $S=\lbrace (x_{1}, y_{1}),\; \dots\;, (x_{m}, y_{m}) \rbrace$, and be $T$ the hyper-parameter which tells AdaBoost how many iteration must run to perform the prediction. $T$ can be set, for example, through cross validation. Given a base predictor $h_{i} \in \mathbb{H}\;$ for each iteration $i = 1,\;\dots\;T$ we set a coefficient $\alpha_{i}$. The base classifiers $h_{i}$ is a simple binary classifier of the form $h:\mathbb{R}^{d}\to\lbrace-1, 1\rbrace$. The output of AdaBoost is sign of the function below:
 	\begin{align*}
-		f = \sum_{i=1}^{T}w_{i}h_{i}
+		f(\cdot) = \sum_{i=1}^{T}\alpha_{i}h_{i}(\cdot)
 	\end{align*}
-	Where $h_{i}, \dots, h_{T}$ are the basic classifiers and $w_{i}, \dots, w{T}$ are the weights. Such weights have been chosen to minimize the AdaBoost's training error upper bound:
-	\begin{align}
-		\hat{\ell}_{S}(f) \leq \prod_{i=1}^{T}(e^{-w_{i}}(1-\epsilon_{i})+e^{w_{i}}\epsilon_{i})
-		\label{test}
-	\end{align}
-	where $\epsilon_{i}$ is the individual predictors error with respect to the probability $\mathbb{P}_{i}$. The derivative of (\ref{test}) with respect to $w$ is:
-	\begin{align*}
-		w = \frac{1}{2}\ln\frac{1-\epsilon_{i}}{\epsilon_{i}}
-	\end{align*}
-	which is defined if and only if $0 < epsilon_{i} < 1$. Otherwise, either $|h_{i}|$ has zero training error on the given dataset, hence boosting is avoidable. 
+	The learner output is the sign of $f(\cdot)$. 
 %\begin{align}
 %	\mathbb{P} (h_{1}(x_{Z}) \neq y_{Z} \land \dots \land h_{T}(x_{Z}) \neq y_{Z}) = %\prod_{i=1}^{T}w_{i}h_{i}
 %\end{align}
