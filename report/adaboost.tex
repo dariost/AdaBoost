@@ -22,11 +22,11 @@
 	\end{align*}
 	[\textbf{ENDTODO}]
 
-The algorithm that has been implemented of AdaBoost is described by (\ref{alg:adaboost}) and takes three parameters:
+The AdaBoost algorithm is described by (\ref{alg:adaboost}) and takes the following three parameters:
 \begin{itemize}
 	\item $S$ is the training set;
-	\item $BASE(S,\;w^{t})$ is the base classifier used by AdaBoost, it takes the training set and the $w^{t}$ vector of weights at each \textit{t-th} iteration; and
-	\item $T$ is the number of iteration that AdaBoost has to run before return its result.
+	\item $BASE(S,\;w^{(t)})$ is the base classifier used by AdaBoost, it takes the training set and the $w^{t}$ vector of weights at each \textit{t-th} iteration;
+	\item $T$ is the number of base classifiers that AdaBoost will create to perform its prediction.
 \end{itemize}
 \begin{algorithm}[htpb]
 	\caption{}
@@ -36,10 +36,10 @@ The algorithm that has been implemented of AdaBoost is described by (\ref{alg:ad
 		\State $w^{(0)} \gets (1/n,\;\dots\;,1/n)$ \label{instr:w_init}
 		\For{$t \gets 1 \textbf{ to } T$}
 			\State $h^{(t)} \gets BASE(S, w^{(t)})$
-			\State $\varepsilon^{(t)} \gets \sum_{i=1}^{n}w_{i}^{(t)}\mathbb{I}\lbrace h^{(t)}(x_{i} \neq y_{i}) \rbrace $
+			\State $\varepsilon^{(t)} \gets \sum_{i=1}^{n}w_{i}^{(t)}\mathbb{I}\lbrace h^{(t)}(x_{i}) \neq y_{i} \rbrace $
 			\State $\alpha^{(t)} \gets \frac{1}{2}\ln\Big(\frac{1-\varepsilon^{(t)}}{\varepsilon^{(t)}}\Big)$
 			\For{$i\gets1\textbf{ to } n$}
-				\If{$\mathbb{I}\lbrace h^{(t)}(x_{i} \neq y_{i})\rbrace$}
+				\If{$\mathbb{I}\lbrace h^{(t)}(x_{i}) \neq y_{i}\rbrace$}
 					\State $w_{i}^{(t+1)}\gets\frac{w_{i}^{(t)}}{2\varepsilon^{(t)}}$
 				\Else
 					\State $w_{i}^{(t+1)}\gets\frac{w_{i}^{(t)}}{2(1-\varepsilon^{(t)})}$
@@ -50,13 +50,13 @@ The algorithm that has been implemented of AdaBoost is described by (\ref{alg:ad
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
-It starts with initializing the weight vector to a uniform value and updates it at each iteration based on the prediction made by the base classifier, stored in $h^{(t)}$. The new values of $w^{(t)}$ are studied to maintain the whole vector normalized such that
+It starts by initializing of the weight vector with the value $1/n$ and updates it at each iteration based on the prediction made by the base classifier stored in $h^{(t)}$. The new values of $w^{(t)}$ are assigned in such a way to maintain the whole vector normalized:
 \begin{align}
 	\label{eq:w_norm}
 	\sum_{i=1}^{n}w^{(t)}_{i} = 1
 \end{align}
 In this way we can properly use the expression (\ref{eq:alpha_def}) which is defined for $0 < \varepsilon^{(t)} < 1$.
-To proof that, assuming that line \ref{instr:w_init} of the algorithm (\ref{alg:adaboost}) maintains expression (\ref{eq:w_norm}):
+To prove that, noting that line \ref{instr:w_init} of algorithm (\ref{alg:adaboost}) satisfies equality (\ref{eq:w_norm}) for $w^{(0)}$, we can use induction:
 \begin{equation*}
 \begin{split}
 	\sum_{i=1}^{n}w_{i}^{(t+1)} & = \\
