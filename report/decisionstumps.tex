@@ -1,2 +1,24 @@
 % !TeX spellcheck = en_US
 \chapter{Decision Stumps}
+Decision stumps are the base classifiers used by AdaBoost in this project.\\
+It is a three with a node and two leaves and defined by three parameters: an index $j$ for the feature that it cuts (in this project, the features are real numbers), the threshold $\theta$ of the cut and the sign of the decision. A decision stump can be map as the following function:
+\begin{align}
+\label{eq:dstumps_function}
+	h:\mathbb{R} \to \lbrace-1, +1\rbrace
+\end{align}
+We can call $\mathbb{H}$ the set containing all the possible decision stumps of the form of $h$, such that $h \in \mathbb{H}$. From (\ref{eq:dstumps_function}) the set $\mathbb{H}$ can be partitioned in two subset, one for the \textit{positive stumps} and the other for the \textit{negative stumps} described formally by the following:
+\begin{align}
+h_{t, \theta+}(x) =
+\begin{cases}
+\;\;\,1       & \quad \text{if } x > \theta\\
+-1  & \quad \text{otherwise}
+\end{cases}\\
+h_{j,\theta-}(x) =
+\begin{cases}
+-1			& \quad \text{if } x \leq \theta\\
+\;\;\,1		& \quad \text{otherwise}
+\end{cases}
+\end{align}
+respectively for positives stumps and negative stumps.
+
+
