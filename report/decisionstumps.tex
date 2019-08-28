@@ -20,7 +20,8 @@ h_{j,\theta-}(x) =
 \;\;\,1		& \quad \text{otherwise}
 \end{cases}
 \end{align}
-respectively for positives stumps and negative stumps.
+respectively for positives stumps and negative stumps.\\
+Algorithm \ref{alg:dstumps} describes how a decision stump works. Takes in input the training set $S$ with $d$ feature and $n$ points and a weight vector $w$. It starts with initializing the constant classifier $\gamma_{0} = 1$ which is equivalent to a positive stump with $\theta < x_{1}^{(j)}$ and sets it as the best edge $\gamma^{*}$. Then it starts looping through all (numeric) features. For each feature, it will search for a better stump than $\gamma^{*}$ between non identical points. In this way, the algorithm will perform an exhaustive search looking for the best decision stump for that training set. 
 \begin{algorithm}[htpb]
 	\caption{}
 	\label{alg:dstumps}
