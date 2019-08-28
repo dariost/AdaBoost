@@ -12,7 +12,8 @@ h_{t, \theta+}(x) =
 \begin{cases}
 \;\;\,1       & \quad \text{if } x > \theta\\
 -1  & \quad \text{otherwise}
-\end{cases}\\
+\end{cases}
+\\
 h_{j,\theta-}(x) =
 \begin{cases}
 -1			& \quad \text{if } x \leq \theta\\
@@ -20,5 +21,33 @@ h_{j,\theta-}(x) =
 \end{cases}
 \end{align}
 respectively for positives stumps and negative stumps.
+\begin{algorithm}[htpb]
+	\caption{}
+	\label{alg:dstumps}
+	\begin{algorithmic}[1]
+		\Procedure{DecisionStump}{$S$, $w$}
+		\State $\gamma_{0} \gets \sum_{i=0}^{n}w_{i}y_{i}$
+		\State $\gamma^{*} \gets \gamma_{0}$
+		\For{$j \gets 1 \textbf{ to } d$}
+			\State $\gamma \gets \gamma_{0}$
+			\For{$i \gets 2 \textbf{ to }n$}
+				\State $\gamma \gets \gamma - 2w_{i-1}y_{i-1}$
+				\If{$x_{i-1}^{(j)} \neq x_{i}^{(j)}$}
+					\If{$|\gamma| > |\gamma^{*}|$}
+						\State $\gamma^{*} \gets \gamma$
+						\State $j^{*} \gets j$
+						\State $\theta^{*} \gets \frac{x_{i}^{(j)} + x_{i-1}^{(j)}}{2}$
+					\EndIf
+				\EndIf
+			\EndFor
+		\EndFor
+		\If{$\gamma^{*} = \gamma$}
+			\Return $h_{0}\times\text{sign}(\gamma_{0}$)
+		\Else
+			\Return $h_{j^{*},\theta^{*}}+\times\text{sign}(\gamma^{*})$
+		\EndIf
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 
