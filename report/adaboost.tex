@@ -31,7 +31,7 @@ The AdaBoost algorithm is described by (\ref{alg:adaboost}) and takes the follow
 \begin{algorithm}[htpb]
 	\caption{}
 	\label{alg:adaboost}
-	\begin{algorithmic}[2]
+	\begin{algorithmic}[1]
 		\Procedure{AdaBoost}{$S$, $BASE(\cdot,\cdot)$, $T$}
 		\State $w^{(0)} \gets (1/n,\;\dots\;,1/n)$ \label{instr:w_init}
 		\For{$t \gets 1 \textbf{ to } T$}
@@ -84,7 +84,8 @@ To prove that, noting that line \ref{instr:w_init} of algorithm (\ref{alg:adaboo
 	(
 		1-\varepsilon^{(t)}
 	) =
-	\frac{1}{2} + \frac{1}{2} = 1
+	\frac{1}{2} + \frac{1}{2} = \\
+	& = 1
 \end{split}
 \end{equation*}
 
