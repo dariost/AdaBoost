@@ -9,10 +9,10 @@ In our project we are using binary classifiers to classify multiple features. To
 	\label{alg:dstumps}
 	\begin{algorithmic}[1]
 		\Procedure{OneVsAll}{$L(\cdot), S$}
-		\State $J \gets \lbrace \forall(x,y)\in S\; |\; y\rbrace$
-		\State $f \gets \emptyset$
+		\State $J \gets \lbrace y\; |\; \forall(x,y)\in S\rbrace$
+		\State $f \gets \varnothing $
 		\For{$j \in J$}
-			\State $S^{\prime} \gets \lbrace \forall(x, y)\in S\; |\; (x, 2\mathbb{I}_{\lbrace y = j \rbrace} -1) \rbrace$
+			\State $S^{\prime} \gets \lbrace (x, 2\mathbb{I}_{\lbrace y = j \rbrace} -1) \; |\; \forall(x, y)\in S \rbrace$
 			\State $f \gets f \cup L(S^{\prime})$
 		\EndFor
 		\Return $f$
