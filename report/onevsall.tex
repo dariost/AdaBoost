@@ -1,16 +1,42 @@
 % !TeX spellcheck = en_US
 \chapter{One Vs All}
-In our project we are using binary classifiers to classify multiple features. To solve this problem, we have implemented \textit{One Vs All}, a multi-class classification strategy which basically instantiate $n$ classifiers, one for each feature. Then, $\forall i = 1,\:\dots\:,n$, sets the $i-th$ predictor to classify $+1$ for the $i-th$ feature and $-1$ for all the others.\\ 
+In our project we are using binary classifiers to classify multiple features. To solve this problem, we have implemented \textit{One Vs All}, a multi-class classification strategy which basically instantiate $n$ learners $L$, one for each Feature. All of those learners, are trained over a training set of the form $S=\lbrace (x_{1},y_{1}),\:\dots\:,(x_{m},y_{m}) \rbrace$ in which there is only one label $y_{j}=+1$ and all the others are set to $y_{t}=-1$ for all $j = 1,\dots,m$ and for all $t \neq j$.
+
+
+
 \begin{algorithm}[htpb]
 	\caption{}
 	\label{alg:dstumps}
 	\begin{algorithmic}[1]
-		\Procedure{OneVsAll}{$L(\cdot,\cdot), y$}
-		\State be $f$ an empty vector of learners
-		\For{$i \in y$}
-			\State $f^{(k)} \gets L(S,y_{i})$
+		\Procedure{OneVsAll}{$L(\cdot), S$}
+		\State $J \gets \lbrace \forall(x,y)\in S\; |\; y\rbrace$
+		\State $f \gets \emptyset$
+		\For{$j \in J$}
+			\State $S^{\prime} \gets \lbrace \forall(x, y)\in S\; |\; (x, 2\mathbb{I}_{\lbrace y = j \rbrace} -1) \rbrace$
+			\State $f \gets f \cup L(S^{\prime})$
 		\EndFor
 		\Return $f$
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
+Now we can apply all the classifiers in $f$ to an unseen sample $x$ and predicting the label $k$ for which the corresponding classifier reports the highest confidence score:
+\begin{align*}
+	\hat{y}=\argmax_{j\in\lbrace 1,\;\dots\;, |J|\rbrace} f_{j}(x)
+\end{align*} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
