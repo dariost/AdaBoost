@@ -1,4 +1,16 @@
 % !TeX spellcheck = en_US
 \chapter{One Vs All}
-\label{chap:ova}
-Coming soon $\dots$
+In our project we are using binary classifiers to classify multiple features. To solve this problem, we have implemented \textit{One Vs All}, a multi-class classification strategy which basically instantiate $n$ classifiers, one for each feature. Then, $\forall i = 1,\:\dots\:,n$, sets the $i-th$ predictor to classify $+1$ for the $i-th$ feature and $-1$ for all the others.\\ 
+\begin{algorithm}[htpb]
+	\caption{}
+	\label{alg:dstumps}
+	\begin{algorithmic}[1]
+		\Procedure{OneVsAll}{$L(\cdot,\cdot), y$}
+		\State be $f$ an empty vector of learners
+		\For{$i \in y$}
+			\State $f^{(k)} \gets L(S,y_{i})$
+		\EndFor
+		\Return $f$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
