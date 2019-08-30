@@ -30,7 +30,7 @@ if __name__ == "__main__":
     ab_te = mpatches.Patch(color='#29c9ff', label='AdaBoost test error')
     ab_tr = mpatches.Patch(color='#196dfc', label='AdaBoost training error')
     ax.legend(handles=[bg_te, bg_tr, ab_te, ab_tr])
-    ax.set_xlabel("Epoches")
+    ax.set_xlabel("Epochs")
     ax.set_ylabel("Errors")
     ax.grid(ls=":")
 
