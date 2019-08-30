@@ -22,7 +22,7 @@ if __name__ == "__main__":
         bagtrain.append(d[i]['Bagging']['TrainingError'])
         bagtest.append(d[i]['Bagging']['TestError'])
 
-    fig, ax = plt.subplots(figsize=(15, 20))
+    fig, ax = plt.subplots(figsize=(8, 5))
 
     ax.set_title("AdaBoost and Bagging training and test errors")
     bg_te = mpatches.Patch(color='#63f7a8', label='Bagging test error')
@@ -43,6 +43,7 @@ if __name__ == "__main__":
     ax.plot([i for i in range(1, len(d) + 1)], adatrain, c='#196dfc')
 
     #plt.show()
-    outputname = "Report" + filename.split("_")[1].split(".")[0] + ".eps"
+    outputname = "report_" + filename.split("_")[1].split(".")[0] + ".eps"
     fig.savefig(outputname, format="eps")
     print("Saved figure {}".format(outputname))
+
