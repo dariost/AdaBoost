@@ -6,7 +6,37 @@ In this project, we have made nine experiments by varying the $K$-fold value in 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.35]{figs/report_k20.eps}
-	\label{fig:k20}
 	\caption{A train for both AdaBoost and Bagging for circa 20000 epochs}
+	\label{fig:k20}
 \end{figure}
-As you can see in \figurename~\ref{fig:k20}, AdaBoost is way better than Bagging and it's already possible to catch the best value for $T$, which in that figure seems to be around the first thousands epochs. 
+As you can see in \autoref{fig:k20}, AdaBoost is way better than Bagging and it's already possible to catch the best value for $T$, which in this case is $650$ with a test error of $0.29861$.\\
+Table \autoref{tab:results} summarize all the results for all the $K$-fold experiments.
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|c|}
+	\hline 
+	K & Best T value & Test Error \\ 
+	\hline 
+	2 & 144 & 0.325198412698413 \\ 
+	\hline 
+	3 & 260 & 0.308068783068783 \\ 
+	\hline 
+	5 & 873 & 0.298148148148148 \\ 
+	\hline 
+	10 & 673 & 0.302050264550265 \\ 
+	\hline 
+	20 & 650 & 0.29861 \\ 
+	\hline 
+	50 & 998 & 0.291995716127904 \\ 
+	\hline 
+	150 & 637 & 0.281324092409241 \\ 
+	\hline 
+	300 & 563 & 0.272647058823529 \\ 
+	\hline 
+	750 & 714 & 0.26634920634921 \\ 
+	\hline 
+\end{tabular}
+\caption{All the results varying the parameter $K$ in the cross-validation}
+\label{tab:results} 
+\end{table}
