@@ -22,7 +22,7 @@ if __name__ == "__main__":
         bagtrain.append(d[i]['Bagging']['TrainingError'])
         bagtest.append(d[i]['Bagging']['TestError'])
 
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(12, 7))
 
     ax.set_title("AdaBoost and Bagging training and test errors")
     bg_te = mpatches.Patch(color='#63f7a8', label='Bagging test error')
