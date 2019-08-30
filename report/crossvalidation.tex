@@ -1,0 +1,11 @@
+% !TeX spellcheck = en_US
+\chapter{Cross-Validation}
+Cross-validation is a model validation technique mainly used in prediction models. Its purpose is the parameters tuning of parametric learning algorithms such as the $T$ parameter of \textit{AdaBoost}. It can also be used to estimate the accuracy of a given family of algorithms $A$. In this project, we used the \textit{external cross-validation} - also called \textit{K-fold} cross-validation - to evaluate both AdaBoost and \textit{The Bagging Algorithm} by estimating the expected value of the statistical risk.
+\begin{align*}
+	\mathbb{E}[\ell_{\mathcal{D}}(A)]
+\end{align*}
+Where $\mathcal{D}$ is the data distribution and $A$ is the learning algorithm. Given a data-set
+\begin{align*}
+	S \equiv \lbrace (x_{1},y_{y}),\;\dots\;,(x_{m},y_{m}) \rbrace
+\end{align*}
+Now we have to partition $\mathcal{D}$ in $K$ subsets, or ``folds'' of size $m/K$ each. For each of the $\mathcal{D}_{k}$ partition, we want to take one as the test set (also called validation set) and let all the others be the training set. At each $k$ cycle, the algorithm $A$ will be training on the subsets chosen to be the training set and then will be evaluated over the subset chosen to be the test set. Finally, the results of all the evaluation can be averaged to have an average loss of $A$ over $\mathcal{D}$.
