@@ -10,7 +10,7 @@ Where $\mathcal{D}$ is the data distribution and $A$ is the learning algorithm. 
 \end{align*}
 Now we have to partition $\mathcal{D}$ in $K$ subsets, or ``folds'' of size $m/K$ each. For each of the $\mathcal{D}_{k}$ partition, we want to take one as the test set (also called validation set) and let all the others be the training set. At each $k$ cycle, the algorithm $A$ will be training on the subsets chosen to be the training set and then will be evaluated over the subset chosen to be the test set. Finally, the results of all the evaluation can be averaged to have an average loss of $A$ over $\mathcal{D}$.
 
-\begin{algorithm}[htpb]
+\begin{algorithm}[]
 	\caption{}
 	\label{alg:crossvalidation}
 	\begin{algorithmic}[1]
@@ -32,3 +32,5 @@ Now we have to partition $\mathcal{D}$ in $K$ subsets, or ``folds'' of size $m/K
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
+
+Algorithm \ref{alg:crossvalidation} describes in pseudo-code a possible implementation of a $K$-fold cross-validation that returns the average error on the training set and the validation set respectively. It takes in input a learner $L$, a dataset $\mathcal{D}$, a parameter $K$ for the number of folds to perform and a hyper-parameter $T$ which has to be tuned. This procedure is repeated a certain amount of times to really catch the best value for $T$ which minimize the algorithm's loss function. In our scenario we have set $K=20$ and $T$ is the hyper-parameter for both AdaBoost and Bagging.
