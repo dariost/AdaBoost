@@ -42,7 +42,7 @@ if __name__ == "__main__":
     ax.plot([i for i in range(1, len(d) + 1)], adatest, c='#29c9ff')
     ax.plot([i for i in range(1, len(d) + 1)], adatrain, c='#196dfc')
 
-    plt.show()
+    #plt.show()
     outputname = "Report" + filename.split("_")[1].split(".")[0] + ".eps"
-    #fig.savefig(outputname, format="eps")
+    fig.savefig(outputname, format="eps")
     print("Saved figure {}".format(outputname))
