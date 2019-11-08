@@ -16,11 +16,10 @@
 		\varepsilon_{t} = \sum_{i=1}^{n} w_{i}^{(t)}\mathbb{I}\big\lbrace h^{(t)}(x_{i}) \neq y_{i} \big\rbrace
 	\end{align*}
 	Where $w_{i}$ for $i = 1,\;\dots\;, n$ is a weight distribution over the data points, initially set uniformly and updated successively in each iteration.\\\\
-	This value of $\alpha_{t}$ is chosen due to the fact that it is the [\textbf{TODO}]zero derivative with respect to the weights $\alpha_{t}$ of the training error's upper bound of AdaBoost $\hat{\ell}_{S}(f)$, which is
+	In order to minimize the AdaBoost's training error $\hat{\ell}(f)$ over the training set $S$, the values of $\alpha_{t}$s are chosen to be its zero derivative, which is
 	\begin{align*}
 		\hat{\ell}_{S}(f) \leq \prod_{t=1}^{T}\big( e^{-\alpha_{t}}(1-\varepsilon_{t}) + e^{\alpha_{t}}\varepsilon_{t} \big)
 	\end{align*}
-	[\textbf{ENDTODO}]
 
 The AdaBoost algorithm is described by (\ref{alg:adaboost}) and takes the following three parameters:
 \begin{itemize}

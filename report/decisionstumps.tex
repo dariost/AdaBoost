@@ -22,8 +22,8 @@ h_{j,\theta-}(x) =
 \end{cases}
 \end{align}
 respectively for positives and negatives stumps.\\
-Algorithm \ref{alg:dstumps} describes the implementation of a decision stump. Takes as input the training set $S$ with $d$ feature and $n$ points and a weight vector $w$. It starts with initializing the constant classifier $\gamma_{0} = 1$ which is equivalent to a positive stump with $\theta < x_{1}^{(j)}$ and sets the best edge $\gamma^{*} = \gamma_{0}$. Then it starts looping through all the $d$ features. For each feature, it will search for a better stump than $\gamma^{*}$ between non identical points. In this way, the algorithm will perform an exhaustive search looking for the best decision stump for that training set.
-\\\textbf{[TODO]} describe w vector \textbf{[ENDTODO]}
+Algorithm \ref{alg:dstumps} describes the implementation of a decision stump. Takes as input the training set $S$, with $d$ feature and $n$ points, and a weight vector $w$ distributed over the the training set. It starts with initializing the constant classifier $\gamma_{0} = 1$ which is equivalent to a positive stump with $\theta < x_{1}^{(j)}$ and sets the best edge $\gamma^{*} = \gamma_{0}$. Then it starts looping through all the $d$ features. For each feature, it will search for a better stump than $\gamma^{*}$ between non identical points. In this way, the algorithm will perform an exhaustive search looking for the best decision stump for that training set.
+
 \begin{algorithm}[htpb]
 
 	\label{alg:dstumps}

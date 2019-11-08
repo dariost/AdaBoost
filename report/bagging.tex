@@ -18,6 +18,7 @@ We know that $\bar{x}$ has some error in it. To improve this estimation, we can 
 	\begin{algorithmic}[1]
 		\Procedure{Bagging}{$L(\cdot), S, T$}
 		\State $A \gets \varnothing$
+		\State $w \gets \varnothing$
 		\For{$i=1 \textbf{ to } n$}
 		\State $A \gets A \cup \texttt{Bootstrap}(L,S)$
 		\EndFor
@@ -26,10 +27,12 @@ We know that $\bar{x}$ has some error in it. To improve this estimation, we can 
 		\Procedure{Bootstrap}{$L(\cdot), S$}
 		\State $S^{\prime} \gets \varnothing$
 		\For{$i=1\textbf{ to }|S|$}
-		\State be $x$ a random sample drawn uniformly from $S$
+		\State be $x_{i}$ a random sample drawn uniformly from $S$
+		\State increment by $1$ the weight $w_{i}$ associated to $x_{i}$
 		\State $S^{\prime} \gets S^{\prime} \cup x$
 		\EndFor
-		\Return $L(S^{\prime})$
+		\\
+		\Return $L(S^{\prime}, w)$
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
