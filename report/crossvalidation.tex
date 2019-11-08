@@ -1,29 +1,29 @@
 % !TeX spellcheck = en_US
 
 \chapter{Cross-Validation}
-Cross-validation is a model validation technique mainly used in prediction models. Its purpose is parameter tuning of parametric learning algorithms such as the $T$ parameter of \textit{AdaBoost}. It can also be used to estimate the accuracy of a given family of algorithms $A$. In this project, we used the \textit{external cross-validation} - also called \textit{K-fold} cross-validation - to evaluate both AdaBoost and \textit{The Bagging Algorithm} by estimating the expected value of the statistical risk.
+Cross-validation is a model validation technique mainly used in prediction models. Its purpose is parameter tuning of parametric learning algorithms such as the $T$ parameter of \textit{AdaBoost}. It can also be used to estimate the accuracy of a given family of algorithms $A$. In this project, we used the \textit{external cross-validation} - also called \textit{K-fold} cross-validation - to evaluate both  \textit{AdaBoost} and \textit{Bagging Algorithm} by estimating the expected value of the statistical risk.
 \begin{align*}
 	\mathbb{E}[\ell_{\mathcal{D}}(A)]
 \end{align*}
-Where $\mathcal{D}$ is the data set and $A$ is the learning algorithm. We have to partition $\mathcal{D}$ in $K$ subsets, or ``folds'' of size $m/K$ each where $m = |\mathcal{D}|$. For each of the $\mathcal{D}_{k}$ partition, we want to take one as the test set (also called validation set) and let all the others be the training set. At each $k$ cycle, the algorithm $A$ will be training on the subsets chosen to be the training set and then will be evaluated over the subset chosen to be the test set. Finally, the results of all the evaluation can be averaged to have an average loss of $A$ over $\mathcal{D}$.
+Where $\mathcal{D}$ is the data set and $A$ is the learning algorithm. We have to partition $\mathcal{D}$ in $K$ subsets, or ``folds'' of size $m/K$ each where $m = |\mathcal{D}|$. For each of the $\mathcal{D}_{k}$ partition, we want to take one as the test set (also called validation set) and let all the others be the training set. At each cycle $k$, the algorithm $A$ will be trained on the subsets chosen to be the training set and then will be evaluated over the subset chosen to be the test set. Finally, the results of all the evaluation can be averaged to have an average loss of $A$ over $\mathcal{D}$.
 
 \begin{algorithm}[]
 	\caption{}
 	\label{alg:crossvalidation}
 	\begin{algorithmic}[1]
-		\Procedure{CrossValidation}{$L(\cdot,\cdot), \mathcal{D}, K, T$}
+		\Procedure{CrossValidation}{$L(\cdot,\cdot), \mathcal{D}, K$}
 		\State $\ell_{S} \gets 0$
 		\State $\ell_{\mathcal{D}} \gets 0$
 		\State Partition $\mathcal{D}$ in $K$ subsets
 		\For{\textbf{each} $\mathcal{D}_{k} \in \mathcal{D}$}
 			\State $V_{k} \gets \mathcal{D}_{k}$ \Comment $V_{k}$ is the validation set
 			\State $S_{k} \gets \mathcal{D}\setminus\mathcal{D}_{k}$ \Comment $S_{k}$ is the test set
-			\State $\ell_{S} \gets \ell_{S} + \ell(L(S_{k}, T))$
-			\State $\ell_{\mathcal{D}} \gets \ell_{\mathcal{D}} + \ell(L(V_{k}, T)) $
+			\State $\ell_{S} \gets \ell_{S} + \ell(L(S_{k}))$
+			\State $\ell_{\mathcal{D}} \gets \ell_{\mathcal{D}} + \ell(L(V_{k})) $
 		\EndFor
 		\Return $(\frac{\ell_{S}}{K},\frac{\ell_{\mathcal{D}}}{K})$
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:crossvalidation} describes a possible implementation of a $K$-fold cross-validation that returns the average loss on the validation set and the test set respectively. It takes in input a learner $L$, a dataset $\mathcal{D}$, a parameter $K$ for the number of folds to perform and a hyper-parameter $T$ which has to be tuned. This procedure is repeated a certain amount of times to really catch the best value for $T$ which minimize the algorithm's loss function. In our scenario we have set $K=20$ and $T$ is the hyper-parameter for both AdaBoost and Bagging.
+Algorithm \ref{alg:crossvalidation} describes a possible implementation of a $K$-fold cross-validation that returns the average loss on the validation set and the test set respectively. It takes in input a learner $L$, a dataset $\mathcal{D}$ and a parameter $K$ for the number of folds to perform.
