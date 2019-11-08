@@ -36,13 +36,21 @@ The dataset provided contains information about forest cover types. It contains 
 \caption{Table of the features present in the dataset. The ``Wilderness area'' feature is divided in $4$ binary columns one for each area studied, as for the ``Soil type'' feature which is divided in $40$ binary columns.}
 \label{tab:features}
 \end{table}
-\begin{figure}[htpb]
+\begin{figure}
 	\centering
-	\begin{tabular}{cc}
-		\includegraphics[scale=0.45]{figs/1.eps}	& \includegraphics[scale=0.45]{figs/2.eps}\\ 
-		\includegraphics[scale=0.45]{figs/3.eps} & \includegraphics[scale=0.45]{figs/4.eps} \\ 
-	\end{tabular} 
-	\caption{Four examples of labeled record}
-	\label{fig:plots}
+	\subfloat[]{
+		\label{ref:1eps}\includegraphics[width=0.5\textwidth]{figs/1.eps}
+	}
+	\subfloat[]{
+		\label{ref:2eps}\includegraphics[width=0.5\textwidth]{figs/2.eps}
+	}
+	\\
+	\subfloat[]{
+		\label{ref:3eps}\includegraphics[width=0.5\textwidth]{figs/3.eps}
+	}
+	\subfloat[]{
+		\label{ref:4eps}\includegraphics[width=0.5\textwidth]{figs/4.eps}
+	}
+	\caption{\label{fig:plots}Four examples of dataset's label distribution}
 \end{figure}
-In \figurename~\ref{fig:plots} we provide four examples of scatter plots based on two features per plot. In the first row and in the first plot of the second row, the labels are well ``separated'', suggesting that some of those features could be a strong candidate to aid classification. The last plot, located in the bottom\-right corner, does not separate as well the different labels, suggesting that the Horizontal distance to hydrology combined (only) with the Hillshade 9am feature are not as good features as the others.
+In \figurename~\ref{fig:plots} we provide four examples of scatter plots based on two features per plot. Figures \ref{ref:1eps}, \ref{ref:2eps} and \ref{ref:3eps}, the labels are well ``separated'', suggesting that some of those features could be a strong candidate to aid classification. Figure \ref{ref:4eps} does not separate as well the different labels, suggesting that the Horizontal distance to hydrology combined (only) with the Hillshade 9am feature are not as good features as the others.
