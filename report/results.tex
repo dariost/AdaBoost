@@ -1,8 +1,8 @@
 % !TeX spellcheck = en_US
 
 \chapter{Results}
-For this project we have chosen to use C++17 and to implement multi-threading to achieve a better execution time upon the computational process through OpenMP, an open standard for parallelism in C, C++ and Fortran programs. The whole execution has been run on a cluster with $10$ Intel(R) Xeon(R) CPU E5430 @ 2.66GHz - 16GB RAM. With this computational power, we have been able to perform multiple experiments by varying the $K$-fold value in the cross-validation: 2, 3, 5, 10, 20, 50, 150, 300, 750 during a period of seven days of computational work.\\
-The program has been written with the purpose to print all the results in a \texttt{.json} format to achieve an easier data analysis through Python3. In all of the experiments, both AdaBoost and Bagging have been trained over the whole data-set with the same hyper-parameter $T$ for every iteration.\\
+For this project we have chosen to use C++17 and to implement a multi-threaded program to achieve a better execution time upon the computational process using OpenMP, an open standard for parallelism for C, C++ and Fortran programs. The whole execution has been run on a cluster of $10$ \texttt{Intel(R) Xeon(R) CPU E5430 @ 2.66GHz - 16GB RAM}. With this computational power, we have been able to perform multiple experiments by varying the $K$-fold value in the cross-validation: 2, 3, 5, 10, 20, 50, 150, 300, 750 during a period of seven days of computation.\\
+The program has been written to print all the results in a \texttt{.json} file to achieve an easier data analysis through Python. In all of the experiments, both AdaBoost and Bagging have been trained over the whole data-set with the same hyper-parameter $T$ for each iteration.\\
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.35]{figs/report_k20.eps}
