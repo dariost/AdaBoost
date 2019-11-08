@@ -1,6 +1,7 @@
 % !TeX spellcheck = en_US
 
 \chapter{Results}
+\label{chap:results}
 For this project we have chosen to use \CC17 and to implement a multi-threaded program to achieve a better execution time upon the computational process using OpenMP, an open standard for parallelism for C, C++ and Fortran programs. The whole execution has been run on a cluster of $10$ \texttt{Intel(R) Xeon(R) CPU E5430 @ 2.66GHz - 16GB RAM}. With this computational power, we have been able to perform multiple experiments by varying the $K$-fold value in the cross-validation: $2$, $3$, $5$, $10$, $20$, $50$, $150$, $300$, $750$ during a period of seven days of computation. With this cluster we have been able to calculate the loss function for any single iteration.\\
 The program has been written to print all the results in a \texttt{.json} file to achieve an easier data analysis through Python. In all of the experiments, both AdaBoost and Bagging have been trained over the whole data-set with the same hyper-parameter $T$ for each iteration.\\
 \begin{figure}
