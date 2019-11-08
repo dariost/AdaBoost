@@ -2,31 +2,32 @@
 
 \chapter{Decision Stumps}
 Decision stumps are the base classifiers used by AdaBoost in this project.\\
-It is a tree with a node and two leaves and is defined by three parameters: an index $j$ for the feature that it cuts (in this project, the features are natural numbers), the threshold $\theta$ of the cut and the sign of the decision. A decision stump is mapped as the following function:
+Those are tree predictors with a node and two leaves and are defined by three parameters: an index $j$ to indicate the feature that it cuts, the threshold $\theta$ of the cut and the sign of the decision. A decision stump has the following domain definition:
 \begin{align}
 \label{eq:dstumps_function}
-	h:\mathbb{R} \to \lbrace-1, +1\rbrace
+	h:\mathbb{R}^d \to \lbrace-1, +1\rbrace
 \end{align}
-We can call $\mathbb{H}$ the set containing all the possible decision stumps of the form of (\ref{eq:dstumps_function}), such that $h \in \mathbb{H}$. From (\ref{eq:dstumps_function}) the set $\mathbb{H}$ can be partitioned in two subset, one for the \textit{positive stumps} and the other for the \textit{negative stumps} described formally by the following:
+where $d$ is the number of features.
+We call $\mathbb{H}$ the set of all  possible decision stumps. We can formally define each element $h \in \mathbb{H}$, separating the case for \textit{positive} and \textit{negative} decision stumps as:
 \begin{align}
 h_{j, \theta+}(x) =
 \begin{cases}
-\;\;\,1       & \quad \text{if } x > \theta\\
+\;\;\,1       & \quad \text{if } x_j > \theta\\
 -1  & \quad \text{otherwise}
 \end{cases}
 \\
 h_{j,\theta-}(x) =
 \begin{cases}
--1			& \quad \text{if } x \leq \theta\\
+-1			& \quad \text{if } x_j \leq \theta\\
 \;\;\,1		& \quad \text{otherwise}
 \end{cases}
 \end{align}
-respectively for positives and negatives stumps.\\
-Algorithm \ref{alg:dstumps} describes the implementation of a decision stump. Takes as input the training set $S$ with $d$ feature and $n$ points and a weight vector $w$. It starts with initializing the constant classifier $\gamma_{0} = 1$ which is equivalent to a positive stump with $\theta < x_{1}^{(j)}$ and sets the best edge $\gamma^{*} = \gamma_{0}$. Then it starts looping through all the $d$ features. For each feature, it will search for a better stump than $\gamma^{*}$ between non identical points. In this way, the algorithm will perform an exhaustive search looking for the best decision stump for that training set.
+for \textit{positive} and \textit{negative} decision stumps respectively.\\
+Algorithm \ref{alg:dstumps1} describes a way to find the best decision stump given a set of weighted points. It takes in input the training set $S$ with $d$ features and $n$ points and a weight vector $w$. It starts by setting $\gamma_{0}$ with the constant classifier $\gamma_{0} = 1$ which is equivalent to a positive stump with $\theta < x_{1}^{(j)}$ and sets the best edge $\gamma^{*} = \gamma_{0}$. Then it starts looping through all the $d$ features. For each feature, it will search for a better stump than $\gamma^{*}$ between non identical points. In this way, the algorithm will perform an exhaustive search looking for the best decision stump for that training set.
 \\\textbf{[TODO]} describe w vector \textbf{[ENDTODO]}
 \begin{algorithm}[htpb]
 
-	\label{alg:dstumps}
+	\label{alg:dstumps1}
 	\begin{algorithmic}[1]
 		\Procedure{DecisionStump}{$S$, $w$}
 		\State $\gamma_{0} \gets \sum_{i=0}^{n}w_{i}y_{i}$
