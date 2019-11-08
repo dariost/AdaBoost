@@ -1,8 +1,7 @@
 % !TeX spellcheck = en_US
+
 \chapter{One Vs All}
-In our project we are using binary classifiers to classify multiple features. To solve this problem, we have implemented \textit{One Vs All}, a multi-class classification strategy which basically instantiate $n$ learners $L$, one for each Feature. All of those learners, are trained over a training set of the form $S=\lbrace (x_{1},y_{1}),\:\dots\:,(x_{m},y_{m}) \rbrace$ in which there is only one label $y_{j}=+1$ and all the others are set to $y_{t}=-1$ for all $j = 1,\dots,m$ and for all $t \neq j$.
-
-
+In our project we are using binary classifiers to classify multiple labels. To do multiple label classification, we have implemented \textit{One Vs All}, a multi-class classification strategy which basically instantiate $n$ learners $L$, one for each Feature. All of those learners, are trained over a training set of the form $S=\lbrace (x_{1},y_{1}),\:\dots\:,(x_{m},y_{m}) \rbrace$ in which there is only one label $y_{j}=+1$ and all the others are set to $y_{t}=-1$ for all $j = 1,\dots,m$ such that $t \neq j$.
 
 \begin{algorithm}[htpb]
 	\caption{}
@@ -19,7 +18,7 @@ In our project we are using binary classifiers to classify multiple features. To
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
-Now we can apply all the classifiers in $f$ to an unseen sample $x$ and predicting the label $k$ for which the corresponding classifier reports the highest confidence score:
+Then, to classify some data point $x$ we can use the $f$ set of classifiers and obtain from all of them a value of confidence that $x$ should be labeled that way. We can the predict the label of $x$ with the one whose predictor gave the highest confidence:
 \begin{align*}
 	\hat{y}=\argmax_{j\in\lbrace 1,\;\dots\;, |J|\rbrace} f_{j}(x)
 \end{align*} 
