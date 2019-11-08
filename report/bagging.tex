@@ -2,16 +2,8 @@
 
 \chapter{The Bagging Algorithm}
 
-\textit{Bagging} is the short name for \textit{bootstrap aggregating} and it is an ensemble algorithm for machine learning. This algorithm combine the strength of the \textit{bootstrap method} to improve the accuracy and reduce the variance. The bootstrap is a powerful statistical method for estimating a quantity over a data-set. For example, given a set $\mathbb{X}$ of $n$ samples, we would like to estimate its mean:
-\begin{align*}
-	\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_{i}
-\end{align*}
-We know that $\bar{x}$ has some error in it. To improve this estimation, we can do as follows:
-\begin{itemize}
-	\item create $k$ random sub-samples of $\mathbb{X}$ with repetitions of a fixed size $t$
-	\item for each of the $k$ sub-samples, calculate their mean
-	\item average all the means and use that data as the estimation $\bar{x}$
-\end{itemize}
+\textit{Bagging} is short for \textit{Bootstrap Aggregating}, a machine learning meta-algorithm used in statistical classification and regression. Like AdaBoost, it works with base classifiers.\\
+Bagging samples $m$ subset $S^{\prime}$ of the same size from a training set $S$ uniformly with replacement. Every $S^{\prime}$ are given in input to the chosen base classifiers and their output is combined.
 \begin{algorithm}[htpb]
 	\caption{}
 	\label{alg:bagging}
